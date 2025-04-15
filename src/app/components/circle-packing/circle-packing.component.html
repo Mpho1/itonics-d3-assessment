@@ -1,0 +1,26 @@
+<mat-toolbar class="toolbar">
+    <a href="https://www.itonics-innovation.com/" target="_blank">
+        <img src="assets/img/logo.png" alt="Logo" class="logo">
+    </a>
+</mat-toolbar>
+
+<div class="toggle-container">
+    <mat-slide-toggle [(ngModel)]="isPopulation" (change)="updateMetric()">
+        {{ isPopulation ? 'Population' : 'Area' }}
+    </mat-slide-toggle>
+</div>
+
+<mat-sidenav-container class="dashboard-container">
+    <mat-sidenav-content>
+        <div #chart class="circle-packing-container"></div>
+    </mat-sidenav-content>
+    <mat-sidenav #drawer mode="side" position="end" opened="false">
+        <div *ngIf="selectedCountry" class="country-details">
+            <img [src]="selectedCountry.flag" alt="{{ selectedCountry.name }} flag" class="country-flag">
+            <h3>{{ selectedCountry.name }}</h3>
+            <p><strong>Area:</strong> {{ selectedCountry.land_area_km2 }} km²</p>
+            <p><strong>Population:</strong> {{ selectedCountry.population }}</p>
+            <p><strong>Learn more:</strong> <a [href]="selectedCountry.wikipedia" target="_blank"> Wikipedia</a></p>
+        </div>
+    </mat-sidenav>
+</mat-sidenav-container>
